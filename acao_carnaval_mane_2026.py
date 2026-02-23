@@ -260,7 +260,7 @@ else:
 
 # Título principal
 st.markdown("""
-<h1 style="font-size: 2.5rem; color: #FF4D4D; font-weight: bold; margin-bottom: 0.5rem; text-shadow: 2px 2px 4px rgba(139,0,0,0.3); text-align: center;">🍺 CARNAVAL ESPETTO 2026</h1>
+<h1 style="font-size: 2.5rem; color: #FF4D4D; font-weight: bold; margin-bottom: 0.5rem; text-shadow: 2px 2px 4px rgba(139,0,0,0.3); text-align: center;">🍺 CARNAVAL MANÉ 2026</h1>
 """, unsafe_allow_html=True)
 
 # Subtítulo com gradiente vermelho
@@ -614,4 +614,5 @@ st.markdown(
         datetime.now().strftime("%d/%m/%Y %H:%M")
     ),
     unsafe_allow_html=True
+
 )
