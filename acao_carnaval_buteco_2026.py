@@ -19,6 +19,70 @@ st.set_page_config(
 
 st.markdown("""
 <style>
+
+/* ===== FUNDO GLOBAL ===== */
+html, body, [class*="css"] {
+    background-color: #0e1117 !important;
+    color: #FAFAFA !important;
+}
+
+/* Container principal */
+.main {
+    background-color: #0e1117 !important;
+}
+
+/* Sidebar */
+section[data-testid="stSidebar"] {
+    background-color: #0e1117 !important;
+}
+
+/* ===== DATAFRAMES ===== */
+[data-testid="stDataFrame"] {
+    background-color: #0e1117 !important;
+}
+
+[data-testid="stDataFrame"] div {
+    color: #FAFAFA !important;
+}
+
+/* Cabeçalho das tabelas */
+[data-testid="stDataFrame"] thead tr th {
+    background-color: #1a1d24 !important;
+    color: #89CFF0 !important;
+}
+
+/* Linhas da tabela */
+[data-testid="stDataFrame"] tbody tr {
+    background-color: #0e1117 !important;
+    color: #FAFAFA !important;
+}
+
+/* Hover linha */
+[data-testid="stDataFrame"] tbody tr:hover {
+    background-color: #1a1d24 !important;
+}
+
+/* ===== TEXTOS STREAMLIT ===== */
+h1, h2, h3, h4, h5, h6, p, span, label {
+    color: #FAFAFA !important;
+}
+
+/* ===== SELECTS E INPUTS ===== */
+.stSelectbox, .stMultiSelect, .stSlider {
+    color: #FAFAFA !important;
+}
+
+/* ===== CARDS BRANCOS QUE VOCÊ CRIOU ===== */
+.section-card {
+    background-color: #161a22 !important;
+    color: #FAFAFA !important;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
+st.markdown("""
+<style>
 /* Remove espaço branco do topo */
 .block-container {
     padding-top: 0rem !important;
@@ -139,7 +203,7 @@ st.markdown("""
         font-size: 0.9rem;
     }
     .section-card {
-        background-color: white;
+        background-color: #161a22;
         padding: 1.5rem;
         border-radius: 15px;
         box-shadow: 0 2px 10px rgba(0,51,102,0.1);
