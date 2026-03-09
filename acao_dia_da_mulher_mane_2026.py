@@ -602,7 +602,7 @@ st.dataframe(
         "FAT_2025": "Faturamento 2025",
         "TC_2025": "Clientes 2025",
         "TM_2025": "Ticket Médio 2025",
-        "PROD_PROMOCIONADO": "Produto",
+        "PROD_PROMOCIONADO": "Ação",
         "COMPOSICAO_PROD": "Composição",
         "QUANTIDADE": "Qtd Vendida"
     }
@@ -616,3 +616,4 @@ st.markdown(
     ),
     unsafe_allow_html=True
 )
+
