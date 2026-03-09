@@ -524,7 +524,7 @@ col1, col2 = st.columns(2)
 
 with col1:
     st.markdown('<div class="section-card">', unsafe_allow_html=True)
-    st.markdown('<h3 style="color: #FF4D4D;">📊 Quantidade Vendida por Loja</h3>', unsafe_allow_html=True)
+    st.markdown('<h3 style="color: #FF4D4D;">📊 Quantidade Promocionada por Loja</h3>', unsafe_allow_html=True)
     
     # Gráfico de quantidade vendida do produto por loja
     df_prod = df_filtrado[df_filtrado['QUANTIDADE'] > 0][['LOJA', 'QUANTIDADE']].copy()
@@ -534,8 +534,8 @@ with col1:
             df_prod,
             x='LOJA',
             y='QUANTIDADE',
-            title='Quantidade Vendida do Garotinho Amstel por Loja',
-            labels={'QUANTIDADE': 'Quantidade Vendida', 'LOJA': 'Loja'},
+            title='Quantidade Entregue do Garotinho Amstel por Loja',
+            labels={'QUANTIDADE': 'Quantidade Entregue', 'LOJA': 'Loja'},
             color='QUANTIDADE',
             color_continuous_scale=['#FF9999', '#8B0000'],
             text='QUANTIDADE'
@@ -555,7 +555,7 @@ with col1:
 
 with col2:
     st.markdown('<div class="section-card">', unsafe_allow_html=True)
-    st.markdown('<h3 style="color: #FF4D4D;">🥧 Distribuição das Vendas</h3>', unsafe_allow_html=True)
+    st.markdown('<h3 style="color: #FF4D4D;">🥧 Distribuição do Produto Promocional</h3>', unsafe_allow_html=True)
     
     # Gráfico de pizza com a distribuição das quantidades
     df_prod_pie = df_filtrado[df_filtrado['QUANTIDADE'] > 0][['LOJA', 'QUANTIDADE']].copy()
@@ -565,7 +565,7 @@ with col2:
             df_prod_pie,
             values='QUANTIDADE',
             names='LOJA',
-            title='Distribuição das Vendas do Garotinho Amstel',
+            title='Distribuição do Garotinho Amstel Entregue',
             color_discrete_sequence=['#8B0000', '#B22222', '#FF4D4D', '#FF9999', '#DC143C']
         )
         fig_prod_pie.update_layout(
