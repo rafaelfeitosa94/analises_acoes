@@ -78,6 +78,32 @@ h1, h2, h3, h4, h5, h6, p, span, label {
     color: #FAFAFA !important;
 }
 
+/* ===== NOVO: REDUZIR FONTE DAS MÉTRICAS ===== */
+[data-testid="stMetricValue"] {
+    font-size: 1.2rem !important;
+}
+
+[data-testid="stMetricLabel"] {
+    font-size: 0.9rem !important;
+}
+
+[data-testid="stMetricDelta"] {
+    font-size: 0.8rem !important;
+}
+
+/* Ajustar o espaçamento entre as colunas de métricas */
+div[data-testid="column"] {
+    padding: 0 5px !important;
+}
+
+/* Ajustar o container das métricas */
+div[data-testid="stMetric"] {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 10px;
+    border-radius: 10px;
+    border-left: 3px solid #FF8C00;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -331,10 +357,6 @@ data = {
     
     'QUANTIDADE': [33, 12, 1] + [0] * 26,  # 3 valores não-zero + 26 zeros = 29
 }
-
-# Verificar comprimentos (opcional - para debug)
-for key, value in data.items():
-    print(f"{key}: {len(value)}")
 
 df = pd.DataFrame(data)
 
