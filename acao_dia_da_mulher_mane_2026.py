@@ -78,6 +78,41 @@ h1, h2, h3, h4, h5, h6, p, span, label {
     color: #FAFAFA !important;
 }
 
+/* ===== REDUZIR FONTE DAS MÉTRICAS ===== */
+[data-testid="stMetricValue"] {
+    font-size: 1.2rem !important;
+}
+
+[data-testid="stMetricLabel"] {
+    font-size: 0.9rem !important;
+}
+
+[data-testid="stMetricDelta"] {
+    font-size: 0.8rem !important;
+}
+
+/* Opcional: Ajustar o espaçamento entre as colunas de métricas */
+div[data-testid="column"] {
+    padding: 0 5px !important;
+}
+
+/* Para garantir que as métricas fiquem mais compactas */
+.st-emotion-cache-1wivap2 {
+    font-size: 0.9rem !important;
+}
+
+.st-emotion-cache-1wmy9hl {
+    font-size: 1.2rem !important;
+}
+
+/* Ajustar o container das métricas */
+div[data-testid="stMetric"] {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 10px;
+    border-radius: 10px;
+    border-left: 3px solid #FF4D4D;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
@@ -260,7 +295,7 @@ else:
 
 # Título principal
 st.markdown("""
-<h1 style="font-size: 2.5rem; color: #FF4D4D; font-weight: bold; margin-bottom: 0.5rem; text-shadow: 2px 2px 4px rgba(139,0,0,0.3); text-align: center;">🍺 DIA DAS MULHERES MANÉ 2026</h1>
+<h1 style="font-size: 2.5rem; color: #FF4D4D; font-weight: bold; margin-bottom: 0.5rem; text-shadow: 2px 2px 4px rgba(139,0,0,0.3); text-align: center;">💐 DIA DAS MULHERES MANÉ 2026</h1>
 """, unsafe_allow_html=True)
 
 # Subtítulo com gradiente vermelho
@@ -353,21 +388,21 @@ st.markdown('<h2 class="sub-header">📊 Visão Geral</h2>', unsafe_allow_html=T
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
-    fat_total_2026 = df_filtrado['FAT_2026'].sum()
-    st.markdown(f"""
-    <div class="metric-card">
-        <div class="metric-value">R$ {fat_total_2026:,.2f}</div>
-        <div class="metric-label" style="color: white;">Faturamento Total 2026</div>
-    </div>
-    """, unsafe_allow_html=True)
-
-with col2:
-    fat_total_2025 = df_filtrado['FAT_2025'].sum() if not df_filtrado['FAT_2025'].isna().all() else 0
-    variacao = ((fat_total_2026 - fat_total_2025) / fat_total_2025 * 100) if fat_total_2025 > 0 else 0
+    fat_total_2025 = df_filtrado['FAT_2025'].sum()
     st.markdown(f"""
     <div class="metric-card">
         <div class="metric-value">R$ {fat_total_2025:,.2f}</div>
         <div class="metric-label" style="color: white;">Faturamento Total 2025</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+with col2:
+    fat_total_2026 = df_filtrado['FAT_2026'].sum() if not df_filtrado['FAT_2026'].isna().all() else 0
+    variacao = ((fat_total_2026 - fat_total_2025) / fat_total_2025 * 100) if fat_total_2025 > 0 else 0
+    st.markdown(f"""
+    <div class="metric-card">
+        <div class="metric-value">R$ {fat_total_2026:,.2f}</div>
+        <div class="metric-label" style="color: white;">Faturamento Total 2026</div>
         <div class="metric-variation">{variacao:+.1f}% vs 2025</div>
     </div>
     """, unsafe_allow_html=True)
@@ -386,7 +421,7 @@ with col4:
     st.markdown(f"""
     <div class="metric-card">
         <div class="metric-value">R$ {tm_medio:,.2f}</div>
-        <div class="metric-label" style="color: white;">Ticket Médio Médio</div>
+        <div class="metric-label" style="color: white;">Ticket Médio Médio 2026</div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -413,15 +448,15 @@ with col1:
         title='Top 10 Lojas por Faturamento',
         labels={'FAT_2026': 'Faturamento (R$)', 'LOJA': 'Loja'},
         color='FAT_2026',
-        color_continuous_scale=['#FF9999', '#8B0000']
+        color_continuous_scale=["#EF5A5A", '#B22222']
     )
     fig_ranking.update_layout(
         height=400, 
         showlegend=False,
         plot_bgcolor='rgba(0,0,0,0)',
         paper_bgcolor='rgba(0,0,0,0)',
-        font=dict(color='#FF4D4D'),
-        yaxis={'categoryorder': 'total ascending'}  # Forçar ordenação ascendente no eixo Y
+        font=dict(color='#C81414'),
+        yaxis={'categoryorder': 'total ascending'}
     )
     st.plotly_chart(fig_ranking, use_container_width=True)
     st.markdown('</div>', unsafe_allow_html=True)
@@ -435,34 +470,112 @@ with col2:
     df_comp = df_comp.dropna(subset=['FAT_2025'])
     
     if not df_comp.empty:
+        # Calcular a variação percentual
+        df_comp['VARIACAO_%'] = ((df_comp['FAT_2026'] - df_comp['FAT_2025']) / df_comp['FAT_2025']) * 100
+        
+        # Ordenar por variação percentual (decrescente)
+        df_comp = df_comp.sort_values('VARIACAO_%', ascending=False).reset_index(drop=True)
+        
+        # CORREÇÃO APLICADA: Cores hexadecimais de 6 dígitos
+        cores = ["#DA1818" if x >= 0 else "#EF5A5A" for x in df_comp['VARIACAO_%']]
+        
         fig_comp = go.Figure()
         fig_comp.add_trace(go.Bar(
-            name='2026',
             x=df_comp['LOJA'],
-            y=df_comp['FAT_2026'],
-            marker_color='#8B0000'
-        ))
-        fig_comp.add_trace(go.Bar(
-            name='2025',
-            x=df_comp['LOJA'],
-            y=df_comp['FAT_2025'],
-            marker_color='#FF9999'
+            y=df_comp['VARIACAO_%'],
+            marker_color=cores,
+            text=df_comp['VARIACAO_%'].round(1).astype(str) + '%',
+            textposition='outside',
+            textfont=dict(size=12, color='white'),
+            hovertemplate='<b>%{x}</b><br>' +
+                         'Variação: %{y:.1f}%<br>' +
+                         '2025: R$ %{customdata[0]:,.2f}<br>' +
+                         '2026: R$ %{customdata[1]:,.2f}<extra></extra>',
+            customdata=df_comp[['FAT_2025', 'FAT_2026']].values,
+            width=0.6
         ))
         
+        # Adicionar linha de referência em 0%
+        fig_comp.add_hline(y=0, line_dash="solid", line_color="#666666", line_width=1)
+        
         fig_comp.update_layout(
-            title='Faturamento por Loja',
-            xaxis_title='Loja',
-            yaxis_title='Faturamento (R$)',
-            barmode='group',
+            title=None,
+            xaxis_title=None,
+            yaxis_title=None,
             height=400,
             plot_bgcolor='rgba(0,0,0,0)',
             paper_bgcolor='rgba(0,0,0,0)',
-            font=dict(color='#FF4D4D')
+            font=dict(color='#FF8C00', size=12),
+            yaxis=dict(
+                ticksuffix='%',
+                gridcolor='rgba(255, 140, 0, 0.2)',
+                gridwidth=1,
+                zeroline=False
+            ),
+            xaxis=dict(
+                tickangle=45,
+                tickfont=dict(size=11)
+            ),
+            showlegend=False,
+            margin=dict(l=40, r=40, t=20, b=80)
         )
+        
         st.plotly_chart(fig_comp, use_container_width=True)
-    else:
-        st.info("Não há dados comparativos disponíveis para 2025")
-    st.markdown('</div>', unsafe_allow_html=True)
+        
+        # Mostrar tabela de dados similar à imagem
+st.markdown("### 📊 Detalhamento por Loja")
+
+# Formatar dados para tabela
+df_display = df_comp.copy()
+df_display['FAT_2025'] = df_display['FAT_2025'].apply(lambda x: f'R$ {x:,.2f}')
+df_display['FAT_2026'] = df_display['FAT_2026'].apply(lambda x: f'R$ {x:,.2f}')
+df_display['VARIACAO_%'] = df_display['VARIACAO_%'].apply(lambda x: f'{x:.1f}%')
+
+# Renomear colunas
+df_display.columns = ['Loja', 'Faturamento 2026', 'Faturamento 2025', 'Variação %']
+
+# CENTRALIZAR TABELA
+col_left, col_center, col_right = st.columns([1,4,1])
+
+with col_center:
+    st.dataframe(
+        df_display,
+        use_container_width=True,
+        hide_index=True,
+        column_config={
+            "Variação %": st.column_config.TextColumn(
+                "Variação %",
+                help="Percentual de variação 2026 vs 2025"
+            )
+        }
+    )
+
+# RESUMO
+st.markdown("### 📈 Resumo")
+
+col_left, col_center, col_right = st.columns([1,4,1])
+
+with col_center:
+    col_metric1, col_metric2, col_metric3, col_metric4 = st.columns(4)
+
+    with col_metric1:
+        media_variacao = df_comp['VARIACAO_%'].mean()
+        st.metric("Variação Média", f"{media_variacao:.1f}%")
+
+    with col_metric2:
+        total_crescimento = len(df_comp[df_comp['VARIACAO_%'] > 0])
+        st.metric("Lojas em Crescimento", total_crescimento)
+
+    with col_metric3:
+        total_queda = len(df_comp[df_comp['VARIACAO_%'] < 0])
+        st.metric("Lojas em Queda", total_queda)
+
+    with col_metric4:
+        melhor_loja = df_comp.loc[df_comp['VARIACAO_%'].idxmax(), 'LOJA']
+        melhor_variacao = df_comp['VARIACAO_%'].max()
+        st.metric("Melhor Performance", f"{melhor_loja} ({melhor_variacao:.1f}%)")
+        
+st.markdown('</div>', unsafe_allow_html=True)
 
 # Ranking detalhado com novo estilo
 st.markdown('<h2 class="sub-header">📋 Ranking Detalhado por Performance</h2>', unsafe_allow_html=True)
@@ -602,7 +715,7 @@ st.dataframe(
         "FAT_2025": "Faturamento 2025",
         "TC_2025": "Clientes 2025",
         "TM_2025": "Ticket Médio 2025",
-        "PROD_PROMOCIONADO": "Ação",
+        "PROD_PROMOCIONADO": "Produto",
         "COMPOSICAO_PROD": "Composição",
         "QUANTIDADE": "Qtd Vendida"
     }
@@ -616,4 +729,3 @@ st.markdown(
     ),
     unsafe_allow_html=True
 )
-
