@@ -147,7 +147,7 @@ st.markdown("""
         font-weight: 500;
     }
     .metric-variation {
-        color: #98FB98;
+        color: white;
         font-size: 0.9rem;
         margin-top: 0.3rem;
     }
@@ -232,7 +232,7 @@ st.markdown("""
         font-size: 0.9rem;
     }
     .summary-sub {
-        color: #98FB98;
+        color: white;
         font-size: 0.8rem;
         margin-top: 0.3rem;
     }
