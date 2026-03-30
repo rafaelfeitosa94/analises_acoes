@@ -272,7 +272,7 @@ st.markdown("""
 # Subtítulo
 st.markdown("""
 <div style="display: flex; justify-content: center; width: 100%; margin-top: 0.5rem;">
-    <p style="background: linear-gradient(135deg, #003366 0%, #1a4d80 100%); color: white; font-weight: bold; font-size: 1.2rem; padding: 0.8rem 2rem; border-radius: 50px; box-shadow: 0 4px 10px rgba(0,51,102,0.3); margin: 0; display: inline-block; text-align: center;">Comparativo: ST. Patrick vs Média das Terças-feiras</p>
+    <p style="background: linear-gradient(135deg, #003366 0%, #1a4d80 100%); color: white; font-weight: bold; font-size: 1.2rem; padding: 0.8rem 2rem; border-radius: 50px; box-shadow: 0 4px 10px rgba(0,51,102,0.3); margin: 0; display: inline-block; text-align: center;">Comparativo: ST. Patrick vs Média das ultimas 4 Terças-feiras</p>
 </div>
 """, unsafe_allow_html=True)
 
