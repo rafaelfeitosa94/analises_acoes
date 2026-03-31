@@ -272,7 +272,7 @@ st.markdown("""
 # Subtítulo
 st.markdown("""
 <div style="display: flex; justify-content: center; width: 100%; margin-top: 0.5rem;">
-    <p style="background: linear-gradient(135deg, #CC7000 0%, #FF8C00 100%); color: white; font-weight: bold; font-size: 1.2rem; padding: 0.8rem 2rem; border-radius: 50px; box-shadow: 0 4px 10px rgba(255,140,0,0.3); margin: 0; display: inline-block; text-align: center;">Comparativo: ST. Patrick vs Média das últimas 4 terças até às 15:59</p>
+    <p style="background: linear-gradient(135deg, #CC7000 0%, #FF8C00 100%); color: white; font-weight: bold; font-size: 1.2rem; padding: 0.8rem 2rem; border-radius: 50px; box-shadow: 0 4px 10px rgba(255,140,0,0.3); margin: 0; display: inline-block; text-align: center;">ST. Patrick vs Média das últimas 4 terças até às 16h e após às 20h</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -280,83 +280,31 @@ st.markdown('</div>', unsafe_allow_html=True)
 
 # Dados da planilha 'espetto (2)'
 data = {
-    'MARCA': ['ESPETTO'] * 35,
-    'LOJA': [
-        'ESP JARDINS', 'ESP OLEGÁRIO', 'ESP TATUAPÉ', 'ESP RECREIO', 'ESP PARK SHOP CG',
-        'ESP ALPHAVILLE', 'ESP VILLA LOBOS', 'ESP NY', 'ESP GRANDE RIO', 'ESP SULACAP',
-        'ESP ICARAÍ', 'ESP BARRA SUL', 'ESP CAXIAS SHOPPING', 'ESP VALQUEIRE LOUNGE', 'ESP ANDRADINA',
-        'ESP RIO DAS OSTRAS', 'ESP VISTA ALEGRE', 'ESP PIRATININGA', 'ESP AEROTOWN', 'ESP AMERICANA',
-        'ESP CHÁCARA ST', 'ESP SALVADOR', 'ESP GUADALUPE', 'ESP UBERLÂNDIA', 'ESP BELA VISTA',
-        'ESP QUIOSQUE NORTE SHOP', 'ESP GOIÂNIA', 'ESP QUIOSQUE CABO FRIO', 'ESP CAXIAS CARREFOUR', 'ESP PANAMBY',
-        'ESP QUIOSQUE MACAÉ', 'ESP ENGENHÃO', 'ESP SANTOS', 'ESP PENÍNSULA', 'ESP QUIOSQUE MACAÉ'
-    ],
-    'FAT_ST_PATRICK': [
-        3742.93, 511.71, 1380.96, 0, 123,
-        6511.08, 5220.50, 2221.08, 1337.58, 1029.5,
-        0, 1220.67, 1366.40, 1750.15, 0,
-        885.36, 0, 0, 1019.31, 656.88,
-        602.56, 1057.8, 0, 0, 1104.56,
-        447.29, 36.73, 0, 440.37, 0,
-        0, 0, 0, 7415.79, 0
-    ],
-    'TC_ST_PATRICK': [
-        51, 6, 21, 0, 2,
-        50, 209, 25, 17, 8,
-        0, 23, 8, 25, 0,
-        7, 0, 0, 22, 7,
-        9, 14, 0, 0, 21,
-        11, 1, 0, 13, 0,
-        0, 0, 0, 115, 0
-    ],
-    'TM_ST_PATRICK': [
-        73.3907843137255, 85.285, 65.76, 0, 61.5,
-        130.2216, 24.978468899521523, 88.8432, 78.68117647058824, 128.6875,
-        0, 53.072608695652164, 170.8, 70.006, 0,
-        126.48, 0, 0, 46.33227272727272, 93.84,
-        66.9511111111111, 75.55714285714285, 0, 0, 52.59809523809523,
-        40.66272727272728, 36.73, 0, 33.874615384615375, 0,
-        0, 0, 0, 64.4851304347826, 0
-    ],
-    'FAT_TERÇAS_MEDIA': [
-        2858.0375, 833.0966667, 1186.8175, 539.5825, 572.3133333,
-        4590.905, 2821.4, 1761.79, 1192.73, 968.9266667,
-        0, 1016.725, 1151.7025, 1174.36, 0,
-        906.8333333, 372.84, 0, 620.4625, 616.07,
-        495.73, 705.585, 0, 0, 1018.3625,
-        376.0025, 74.75, 42.35, 639.175, 0,
-        135.52, 0, 0, 6710.6075, 135.52
-    ],
-    'TC_TERÇAS_MEDIA': [
-        42, 11, 17, 9, 7,
-        46, 94, 25, 16, 8,
-        0, 20, 7, 22, 0,
-        5, 5, 0, 11, 8,
-        6, 11, 0, 0, 19,
-        11, 1, 1, 16, 0,
-        2, 0, 0, 104, 2
-    ],
-    'TM_TERÇAS_MEDIA': [
-        68.04494047619048, 75.73606060909091, 69.81279411764706, 59.95361111111111, 81.75904761904762,
-        99.80228260869566, 30.014893617021276, 70.4716, 74.545625, 121.115833375,
-        0, 50.83625, 164.52892857142858, 53.38, 0,
-        181.36666666, 74.568, 0, 56.40568181818182, 77.00875,
-        82.62166666666667, 64.1440909090909, 0, 0, 53.59802631578947,
-        34.18204545454545, 74.75, 42.35, 39.9484375, 0,
-        67.76, 0, 0, 64.52411057692308, 67.76
-    ],
-    'PROD_PROMOCIONADO': ['Happy Hour o dia todo'] * 35,
-    'COMPOSICAO_PROD': ['CHOPP HEINEKEN E AMSTEL'] * 35,
-    'QUANTIDADE': [5, 1, 3, 0, 9, 35, 0, 0, 3, 5, 0, 0, 7, 0, 0, 9, 0, 0, 0, 1, 0, 4, 0, 0, 1, 4, 0, 0, 4, 0, 0, 0, 0, 0, 0],
-    'VALOR_VENDA_PROD': [70, 15, 38, 0, 123, 524, 0, 0, 36, 56, 0, 0, 103, 0, 0, 114, 0, 0, 0, 13, 0, 56, 0, 0, 10, 45, 0, 0, 48, 0, 0, 0, 0, 0, 0],
-    'PART.(%)': [
-        0.01870192603121084, 0.029313478337339514, 0.02751708956088518, 0, 1,
-        0.08047820023713424, 0, 0, 0.02691427802449199, 0.054395337542496355,
-        0, 0, 0.07538056206088992, 0, 0,
-        0.1287611818921117, 0, 0, 0, 0.01979052490561442,
-        0, 0.05294006428436378, 0, 0, 0.009053378720938655,
-        0.10060587091148918, 0, 0, 0.10899925063015195, 0,
-        0, 0, 0, 0, 0
-    ]
+    'MARCA': ['ESPETTO', 'ESPETTO', 'ESPETTO', 'ESPETTO', 'ESPETTO', 'ESPETTO', 'ESPETTO', 'ESPETTO', 'ESPETTO', 'ESPETTO', 'ESPETTO', 'ESPETTO', 'ESPETTO', 'ESPETTO', 'ESPETTO', 'ESPETTO', 'ESPETTO', 'ESPETTO', 'ESPETTO', 'ESPETTO', 'ESPETTO', 'ESPETTO', 'ESPETTO', 'ESPETTO', 'ESPETTO', 'ESPETTO', 'ESPETTO', 'ESPETTO', 'ESPETTO', 'ESPETTO'],
+
+    'LOJA': ['ESP PENÍNSULA', 'ESP AEROTOWN', 'ESP ALPHAVILLE', 'ESP AMERICANA', 'ESP ANDRADINA', 'ESP BARRA SUL', 'ESP BELA VISTA', 'ESP CAXIAS CARREFOUR', 'ESP CAXIAS SHOPPING', 'ESP CHÁCARA ST', 'ESP COPA PRAIA', 'ESP GOIÂNIA', 'ESP GRANDE RIO', 'ESP GUADALUPE', 'ESP ICARAÍ', 'ESP JARDINS', 'ESP NY', 'ESP OLEGÁRIO', 'ESP PARK SHOP CG', 'ESP QUIOSQUE CABO FRIO', 'ESP QUIOSQUE MACAÉ', 'ESP QUIOSQUE NORTE SHOP', 'ESP RECREIO', 'ESP RIO DAS OSTRAS', 'ESP SALVADOR', 'ESP SULACAP', 'ESP TATUAPÉ', 'ESP VALQUEIRE LOUNGE', 'ESP VILLA LOBOS', 'ESP VISTA ALEGRE'],
+
+    'FAT_ST_PATRICK': [7415.79, 1547.39, 17826.17, 836.08, 5576.96, 1931.73, 1316.35, 640.4, 2060.31, 3324.19, 10523.52, 447.54, 4312.75, 473.33, 817.0, 9472.17, 4610.36, 5570.56, 3446.67, 398.75, 78.96, 917.57, 5769.31, 913.67, 3623.17, 2812.94, 2218.18, 2005.3, 5220.5, 2467.3],
+
+    'TC_ST_PATRICK': [115, 34, 142, 8, 18, 38, 25, 17, 11, 47, 118, 5, 34, 5, 13, 103, 48, 53, 46, 7, 1, 18, 51, 9, 26, 31, 32, 31, 209, 28],
+
+    'TM_ST_PATRICK': [64.49, 45.51, 125.54, 104.51, 309.83, 50.83, 52.65, 37.67, 187.3, 70.73, 89.18, 89.51, 126.85, 94.67, 62.85, 91.96, 96.05, 105.1, 74.93, 56.96, 78.96, 50.98, 113.12, 101.52, 139.35, 90.74, 69.32, 64.69, 24.98, 88.12],
+
+    'FAT_TERÇAS_MEDIA': [6710.61, 919.1, 13755.66, 1578.03, 1677.1, 4090.22, 1469.28, 928.96, 2648.3, 3720.45, 9746.65, 797.31, 4112.71, 1349.72, 1897.19, 6010.85, 4774.24, 4742.02, 3454.27, 454.67, 231.8, 1085.64, 5896.33, 2243.8, 1894.77, 3010.79, 2186.76, 1664.42, 2821.4, 3468.3],
+
+    'TC_TERÇAS_MEDIA': [104, 17, 111, 17, 15, 58, 24, 22, 18, 55, 105, 12, 39, 12, 23, 84, 59, 43, 44, 6, 4, 21, 50, 14, 21, 25, 29, 29, 94, 51],
+
+    'TM_TERÇAS_MEDIA': [64.53, 54.06, 123.92, 92.83, 111.81, 70.52, 61.22, 42.23, 147.13, 67.64, 92.83, 66.44, 105.45, 112.48, 82.49, 71.56, 80.92, 110.28, 78.51, 75.78, 57.95, 51.7, 117.93, 160.27, 90.23, 120.43, 75.41, 57.39, 30.01, 68.01],
+
+    'PROD_PROMOCIONADO': ['Happy Hour o dia todo!'] * 30,
+
+    'COMPOSICAO_PROD': ['Chopp Heineken ou Amstel'] * 30,
+
+    'QUANTIDADE': [0, 11, 65, 1, 1, 1, 1, 5, 7, 5, 17, 0, 3, 14, 24, 10, 0, 35, 55, 26, 3, 17, 71, 9, 7, 17, 3, 0, 0, 11],
+
+    'VALOR_VENDA_PROD': [0.0, 153.0, 962.0, 13.0, 9.95, 13.0, 10.0, 63.0, 103.0, 68.0, 169.15, 0.0, 36.0, 152.0, 198.9, 140.0, 0.0, 477.0, 679.0, 267.0, 42.0, 149.0, 742.0, 114.0, 98.0, 200.0, 38.0, 0.0, 0.0, 124.0],
+
+    'PART.(%)': [0.0, 0.0989, 0.0540, 0.0155, 0.0018, 0.0067, 0.0076, 0.0984, 0.05, 0.0205, 0.0161, 0.0, 0.0083, 0.3211, 0.2435, 0.0148, 0.0, 0.0856, 0.1970, 0.6696, 0.5319, 0.1624, 0.1286, 0.1248, 0.0270, 0.0711, 0.0171, 0.0, 0.0, 0.0503]
 }
 
 # Remover duplicatas e garantir dados únicos
