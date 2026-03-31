@@ -272,7 +272,7 @@ st.markdown("""
 # Subtítulo
 st.markdown("""
 <div style="display: flex; justify-content: center; width: 100%; margin-top: 0.5rem;">
-    <p style="background: linear-gradient(135deg, #8B0000 0%, #B22222 100%); color: white; font-weight: bold; font-size: 1.2rem; padding: 0.8rem 2rem; border-radius: 50px; box-shadow: 0 4px 10px rgba(139,0,0,0.3); margin: 0; display: inline-block; text-align: center;">Comparativo: ST. Patrick vs Média das Terças-feiras até as 15:59</p>
+    <p style="background: linear-gradient(135deg, #8B0000 0%, #B22222 100%); color: white; font-weight: bold; font-size: 1.2rem; padding: 0.8rem 2rem; border-radius: 50px; box-shadow: 0 4px 10px rgba(139,0,0,0.3); margin: 0; display: inline-block; text-align: center;">ST. Patrick vs Média das Terças antes das 16h e após às 20h</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -280,55 +280,77 @@ st.markdown('</div>', unsafe_allow_html=True)
 
 # Dados da planilha 'mane (2)'
 data = {
-    'MARCA': ['MANÉ', 'MANÉ', 'MANÉ', 'MANÉ', 'MANÉ', 'MANÉ', 'MANÉ', 'MANÉ', 'MANÉ', 'MANÉ', 'MANÉ', 'MANÉ', 'MANÉ', 'MANÉ', 'MANÉ', 'MANÉ'],
+    'MARCA': ['MANÉ', 'MANÉ', 'MANÉ', 'MANÉ', 'MANÉ', 'MANÉ', 'MANÉ', 'MANÉ', 'MANÉ', 'MANÉ', 'MANÉ', 'MANÉ', 'MANÉ', 'MANÉ', 'MANÉ', 'MANÉ', 'MANÉ', 'MANÉ', 'MANÉ'],
     'LOJA': [
-        'MAN NITERÓI', 'MAN BÚZIOS', 'MAN COLLAB CABO FRIO', 'MAN SÃO GONÇALO', 'MAN CENTRO RJ',
-        'MAN COPA PRAIA', 'MAN IPANEMA', 'MAN NOVA IGUAÇÚ', 'MAN ITAIPAVA', 'MAN COLLAB VALQUEIRE',
-        'MAN COPACABANA', 'MAN MACAÉ', 'MAN NOVA AMÉRICA', 'MAN PARK SHOP CG', 'MAN RECREIO', 'MAN RIO DAS OSTRAS'
+        'MAN NITERÓI', 'MAN BÚZIOS', 'MAN MACAÉ', 'MAN NOVA AMÉRICA', 'MAN COPACABANA',
+        'MAN COPA PRAIA', 'MAN RECREIO', 'MAN IPANEMA', 'MAN ITAIPAVA', 'MAN NOVA IGUAÇÚ',
+        'MAN CENTRO RJ', 'MAN RIO DAS OSTRAS', 'MAN COLLAB VALQUEIRE', 'MAN SÃO GONÇALO',
+        'MAN OLEGÁRIO', 'MAN VILA DA PENHA', 'MAN COLLAB CABO FRIO', 'MAN VILA VELHA', 'MAN PARK SHOP CG'
     ],
     'FAT_ST_PATRICK': [
-        3347.57, 1147.56, 893.36, 891.19, 824.44,
-        627.02, 480.48, 104.16, 92.4, 0,
-        0, 0, 0, 0, 0, 0
+        9353.14, 8544.11, 5689.66, 4883.73, 4042.87,
+        3587.98, 3044.10, 2869.67, 2573.45, 2497.90,
+        2422.82, 2129.70, 2057.13, 1915.41, 1846.63,
+        1556.27, 1416.86, 880.19, 471.92
     ],
     'TC_ST_PATRICK': [
-        14, 7, 13, 8, 12,
-        11, 7, 2, 1, 0,
-        0, 0, 0, 0, 0, 0
+        129, 68, 231, 36, 44,
+        42, 36, 37, 24, 24,
+        26, 18, 26, 21, 13,
+        22, 19, 11, 7
     ],
     'TM_ST_PATRICK': [
-        239.11214285714286, 163.93714285714285, 68.72, 111.39875, 68.70333333333333,
-        57.00181818181819, 68.64, 52.08, 92.4, 0,
-        0, 0, 0, 0, 0, 0
+        72.50496, 125.64868, 24.63056, 135.65917, 91.88341,
+        85.42810, 84.55833, 77.55865, 107.22708, 104.07917,
+        93.18538, 118.31667, 79.12038, 91.21, 142.04846,
+        70.73955, 74.57158, 80.01727, 67.41714
     ],
-    'FAT_TERÇAS_MEDIA': [
-        136.64, 1377.4025, 991.8425, 983.13, 969.4625,
-        564.39, 994.7275, 266.59, 485.375, 106.4,
-        516.70, 0, 938.0, 189.62, 1552.53, 53.76
+    'FAT_MÉDIA_TERÇA': [
+        9913.414, 9425.61, 6707.666, 3505.214, 3994.696,
+        5143.318, 3562.256, 3504.338, 3039.084, 3558.91,
+        2468.9025, 1244.862, 843.55, 3277.34, 2216.19,
+        1249.6775, 3591.868, 4434.984, 1410.81
     ],
-    'TC_TERÇAS_MEDIA': [
-        1, 12, 12, 11, 12,
-        12, 14, 6, 8, 2,
-        9, 0, 12, 6, 22, 1
+    'TC_MÉDIA_TERÇA': [
+        119, 77, 36, 32, 42,
+        47, 23, 49, 30, 34,
+        26, 14, 15, 28, 20,
+        17, 34, 59, 15
     ],
-    'TM_TERÇAS_MEDIA': [
-        136.64, 114.78354166666666, 82.65354166666667, 89.37545454545455, 80.78854166666666,
-        47.0325, 71.05196428571428, 44.43166666666667, 60.671875, 53.2,
-        57.411111111111104, 0, 78.16666666666667, 31.603333333333335, 70.56954545454545, 53.76
+    'TM_MÉDIA_TERÇA': [
+        83.306, 122.41052, 186.32406, 109.53794, 95.11181,
+        109.43230, 154.88070, 71.51710, 101.30280, 104.67382,
+        94.05343, 88.91871, 56.23667, 117.04786, 110.80950,
+        73.51044, 105.64318, 75.16922, 94.05400
     ],
-    'PROD_PROMOCIONADO': ['HAPPY HOUR O DIA TODO'] * 16,
-    'COMPOSICAO_PROD': ['CHOPP AMSTEL OU HEINEKEN'] * 16,
-    'QUANTIDADE': [1, 0, 0, 15, 0, 0, 1, 2, 0, 0, 0, 0, 0, 0, 0, 0],
-    'VALOR_VENDA_PROD': [13, 0, 0, 161, 0, 0, 13, 25, 0, 0, 0, 0, 0, 0, 0, 0],
-    'PART.(%)': [0.003883, 0.0, 0.0, 0.1806, 0.0, 0.0, 0.0271, 0.2400, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    'PROD_PROMOCIONADO': ['Happy hour o dia todo!'] * 19,
+    'COMPOSICAO_PROD': ['Chopp Amstel ou Heineken'] * 19,
+    'QUANTIDADE': [
+        21, 17, 10, 41, 5,
+        0, 7, 1, 16, 15,
+        7, 29, 0, 35, 20,
+        0, 2, 0, 8
+    ],
+    'VALOR_VENDA_PROD': [
+        247, 235, 122, 458, 55,
+        0, 91, 13, 158.5, 166,
+        81, 403, 0, 382, 261,
+        0, 24, 0, 80
+    ],
+    'PART.(%)': [
+        247/9353.14, 235/8544.11, 122/5689.66, 458/4883.73, 55/4042.87,
+        0/3587.98, 91/3044.10, 13/2869.67, 158.5/2573.45, 166/2497.90,
+        81/2422.82, 403/2129.70, 0/2057.13, 382/1915.41, 261/1846.63,
+        0/1556.27, 24/1416.86, 0/880.19, 80/471.92
+    ]
 }
 
 df = pd.DataFrame(data)
 
 # Calcular variação entre ST. Patrick e Média das Terças
-df['VARIACAO_FAT_%'] = ((df['FAT_ST_PATRICK'] - df['FAT_TERÇAS_MEDIA']) / df['FAT_TERÇAS_MEDIA']) * 100
-df['VARIACAO_TC_%'] = ((df['TC_ST_PATRICK'] - df['TC_TERÇAS_MEDIA']) / df['TC_TERÇAS_MEDIA']) * 100
-df['VARIACAO_TM_%'] = ((df['TM_ST_PATRICK'] - df['TM_TERÇAS_MEDIA']) / df['TM_TERÇAS_MEDIA']) * 100
+df['VARIACAO_FAT_%'] = ((df['FAT_ST_PATRICK'] - df['FAT_MÉDIA_TERÇA']) / df['FAT_MÉDIA_TERÇA']) * 100
+df['VARIACAO_TC_%'] = ((df['TC_ST_PATRICK'] - df['TC_MÉDIA_TERÇA']) / df['TC_MÉDIA_TERÇA']) * 100
+df['VARIACAO_TM_%'] = ((df['TM_ST_PATRICK'] - df['TM_MÉDIA_TERÇA']) / df['TM_MÉDIA_TERÇA']) * 100
 
 # Substituir infinitos por NaN
 df = df.replace([np.inf, -np.inf], np.nan)
@@ -362,25 +384,29 @@ df_filtrado = df[
 # Métricas principais
 st.markdown('<h2 class="sub-header">📊 Visão Geral</h2>', unsafe_allow_html=True)
 
+# ===== CÁLCULOS =====
+fat_total_st_patrick = df_filtrado['FAT_ST_PATRICK'].sum()
+fat_total_tercas = df_filtrado['FAT_MÉDIA_TERÇA'].sum()
+
+variacao_total = ((fat_total_st_patrick - fat_total_tercas) / fat_total_tercas * 100) if fat_total_tercas > 0 else 0
+
+# ===== COLUNAS =====
 col1, col2, col3, col4 = st.columns(4)
 
-with col1:
-    fat_total_st_patrick = df_filtrado['FAT_ST_PATRICK'].sum()
+with col2:
     st.markdown(f"""
     <div class="metric-card">
         <div class="metric-value">R$ {fat_total_st_patrick:,.2f}</div>
         <div class="metric-label">Faturamento ST. Patrick 2026</div>
+        <div class="metric-variation">{variacao_total:+.1f}% vs Média Terças</div>
     </div>
     """, unsafe_allow_html=True)
 
-with col2:
-    fat_total_tercas = df_filtrado['FAT_TERÇAS_MEDIA'].sum()
-    variacao_total = ((fat_total_st_patrick - fat_total_tercas) / fat_total_tercas * 100) if fat_total_tercas > 0 else 0
+with col1:
     st.markdown(f"""
     <div class="metric-card">
         <div class="metric-value">R$ {fat_total_tercas:,.2f}</div>
         <div class="metric-label">Média Faturamento Terças</div>
-        <div class="metric-variation">{variacao_total:+.1f}% vs Média Terças</div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -442,9 +468,9 @@ with col2:
     st.markdown('<div class="section-card">', unsafe_allow_html=True)
     st.markdown('<h3 style="color: #FF6666;">📈 Comparativo ST. Patrick vs Média Terças</h3>', unsafe_allow_html=True)
     
-    df_comp = df_filtrado[['LOJA', 'FAT_ST_PATRICK', 'FAT_TERÇAS_MEDIA', 'VARIACAO_FAT_%']].copy()
+    df_comp = df_filtrado[['LOJA', 'FAT_ST_PATRICK', 'FAT_MÉDIA_TERÇA', 'VARIACAO_FAT_%']].copy()
     df_comp = df_comp.dropna(subset=['VARIACAO_FAT_%'])
-    df_comp = df_comp[df_comp['FAT_TERÇAS_MEDIA'] > 0]
+    df_comp = df_comp[df_comp['FAT_MÉDIA_TERÇA'] > 0]
     df_comp = df_comp.sort_values('VARIACAO_FAT_%', ascending=False).reset_index(drop=True)
     
     if not df_comp.empty:
@@ -462,7 +488,7 @@ with col2:
                          'Variação: %{y:.1f}%<br>' +
                          'ST. Patrick: R$ %{customdata[0]:,.2f}<br>' +
                          'Média Terças: R$ %{customdata[1]:,.2f}<extra></extra>',
-            customdata=df_comp[['FAT_ST_PATRICK', 'FAT_TERÇAS_MEDIA']].values,
+            customdata=df_comp[['FAT_ST_PATRICK', 'FAT_MÉDIA_TERÇA']].values,
             width=0.6
         ))
         
@@ -501,7 +527,7 @@ st.markdown("---")
 st.markdown("### 📊 Detalhamento por Loja")
 
 df_display = df_comp.copy()
-df_display['FAT_TERÇAS_MEDIA'] = df_display['FAT_TERÇAS_MEDIA'].apply(lambda x: f'R$ {x:,.2f}')
+df_display['FAT_MÉDIA_TERÇA'] = df_display['FAT_MÉDIA_TERÇA'].apply(lambda x: f'R$ {x:,.2f}')
 df_display['FAT_ST_PATRICK'] = df_display['FAT_ST_PATRICK'].apply(lambda x: f'R$ {x:,.2f}')
 df_display['VARIACAO_FAT_%'] = df_display['VARIACAO_FAT_%'].apply(lambda x: f'{x:.1f}%')
 df_display.columns = ['Loja', 'ST. Patrick 2026', 'Média Terças', 'Variação %']
@@ -740,11 +766,11 @@ st.markdown('<h2 class="sub-header">📊 Dados Completos</h2>', unsafe_allow_htm
 
 df_display_full = df_filtrado.copy()
 df_display_full['FAT_ST_PATRICK'] = df_display_full['FAT_ST_PATRICK'].apply(lambda x: f'R$ {x:,.2f}')
-df_display_full['FAT_TERÇAS_MEDIA'] = df_display_full['FAT_TERÇAS_MEDIA'].apply(lambda x: f'R$ {x:,.2f}')
+df_display_full['FAT_MÉDIA_TERÇA'] = df_display_full['FAT_MÉDIA_TERÇA'].apply(lambda x: f'R$ {x:,.2f}')
 df_display_full['TM_ST_PATRICK'] = df_display_full['TM_ST_PATRICK'].apply(lambda x: f'R$ {x:,.2f}')
-df_display_full['TM_TERÇAS_MEDIA'] = df_display_full['TM_TERÇAS_MEDIA'].apply(lambda x: f'R$ {x:,.2f}')
+df_display_full['TM_MÉDIA_TERÇA'] = df_display_full['TM_MÉDIA_TERÇA'].apply(lambda x: f'R$ {x:,.2f}')
 df_display_full['TC_ST_PATRICK'] = df_display_full['TC_ST_PATRICK'].apply(lambda x: f'{x:,.0f}')
-df_display_full['TC_TERÇAS_MEDIA'] = df_display_full['TC_TERÇAS_MEDIA'].apply(lambda x: f'{x:,.0f}')
+df_display_full['TC_MÉDIA_TERÇA'] = df_display_full['TC_MÉDIA_TERÇA'].apply(lambda x: f'{x:,.0f}')
 df_display_full['VALOR_VENDA_PROD'] = df_display_full['VALOR_VENDA_PROD'].apply(lambda x: f'R$ {x:,.2f}')
 df_display_full['PART.(%)'] = df_display_full['PART.(%)'].apply(lambda x: f'{x*100:.4f}%')
 df_display_full['VARIACAO_FAT_%'] = df_display_full['VARIACAO_FAT_%'].apply(lambda x: f'{x:.1f}%' if pd.notna(x) else 'N/A')
@@ -752,9 +778,9 @@ df_display_full['VARIACAO_TC_%'] = df_display_full['VARIACAO_TC_%'].apply(lambda
 df_display_full['VARIACAO_TM_%'] = df_display_full['VARIACAO_TM_%'].apply(lambda x: f'{x:.1f}%' if pd.notna(x) else 'N/A')
 
 # Selecionar e renomear colunas para exibição
-colunas_exibir = ['LOJA', 'FAT_ST_PATRICK', 'FAT_TERÇAS_MEDIA', 'VARIACAO_FAT_%', 
-                  'TC_ST_PATRICK', 'TC_TERÇAS_MEDIA', 'VARIACAO_TC_%',
-                  'TM_ST_PATRICK', 'TM_TERÇAS_MEDIA', 'VARIACAO_TM_%',
+colunas_exibir = ['LOJA', 'FAT_ST_PATRICK', 'FAT_MÉDIA_TERÇA', 'VARIACAO_FAT_%', 
+                  'TC_ST_PATRICK', 'TC_MÉDIA_TERÇA', 'VARIACAO_TC_%',
+                  'TM_ST_PATRICK', 'TM_MÉDIA_TERÇA', 'VARIACAO_TM_%',
                   'PROD_PROMOCIONADO', 'COMPOSICAO_PROD', 'QUANTIDADE', 'VALOR_VENDA_PROD', 'PART.(%)']
 
 df_display_full = df_display_full[colunas_exibir]
