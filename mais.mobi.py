@@ -114,7 +114,7 @@ with st.sidebar:
 
 # ========== MAIN CONTENT ==========
 # Título Principal
-st.title("📈 Dashboard de Análise de E-commerce")
+st.title("📈 Análise de vendas")
 st.markdown("---")
 
 # ========== LINHA 1 - CARDS PRINCIPAIS ==========
