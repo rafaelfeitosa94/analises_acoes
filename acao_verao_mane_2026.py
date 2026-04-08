@@ -326,6 +326,7 @@ data = {
     'PROD_PROMOCIONADO': ['AÇÃO VERÃO 2026'] * 18,
     'QUANTIDADE BOTÃO': [18, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     'COMPOSICAO_PROD': ['Panelinha Mignon, Paris ou Tilápia + chopp'] * 18,
+    'PRATOS_VENDIDOS_SEM_PROMOÇÃO': ['Panelinha Mignon, Paris ou Tilápia'] * 18,
     'QUANTIDADE': [
         295, 91, 65, 69, 2,
         25, 182, 155, 51, 88,
