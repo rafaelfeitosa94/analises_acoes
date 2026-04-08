@@ -414,7 +414,7 @@ with col3:
     """, unsafe_allow_html=True)
 
 with col4:
-    tm_medio = df_filtrado['TM_2026'].mean()
+    m_medio = fat_total_2026 / clientes_total if clientes_total > 0 else 0
     st.markdown(f"""
     <div class="metric-card">
         <div class="metric-value">R$ {tm_medio:,.2f}</div>
