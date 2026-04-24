@@ -50,15 +50,6 @@ def login_screen():
         min-height: 80vh;
         background: linear-gradient(135deg, #0e1117 0%, #1a2a0f 100%);
     }
-    .login-card {
-        background: linear-gradient(135deg, #161a22 0%, #1a2a0f 100%);
-        padding: 2.5rem;
-        border-radius: 20px;
-        box-shadow: 0 10px 40px rgba(150,199,52,0.2);
-        border: 1px solid #96c734;
-        max-width: 450px;
-        margin: 0 auto;
-    }
     .login-title {
         text-align: center;
         color: #96c734;
