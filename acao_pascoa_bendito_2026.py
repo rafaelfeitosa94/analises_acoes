@@ -11,8 +11,8 @@ import base64
 
 # Configuração da página
 st.set_page_config(
-    page_title="Dashboard Espetto - Análise de Vendas",
-    page_icon="🍺",
+    page_title="🐰Páscoa Bendito",
+    page_icon="",
     layout="wide",
     initial_sidebar_state="expanded"
 )
