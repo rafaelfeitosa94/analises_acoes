@@ -6,6 +6,7 @@ import plotly.graph_objects as go
 import pyodbc
 from datetime import datetime
 import hashlib
+import pymssql
 
 # Configuração da página
 st.set_page_config(
@@ -210,7 +211,7 @@ def conectar_banco():
     
     for driver in drivers:
         try:
-            conn_str = (
+           conn = pymssql.connect(
                 f"DRIVER={driver};"
                 "SERVER=ad01\\bartender;"
                 "DATABASE=bd_jetsales;"
