@@ -9,7 +9,7 @@ import os
 
 # Configuração da página
 st.set_page_config(
-    page_title="Análise de vendas - Eidom",
+    page_title="Análise de vendas - Eindom",
     page_icon="📊",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -210,7 +210,7 @@ def dashboard_principal():
 
     # --- Título ---
     st.markdown("""
-    <h1 style='text-align: center; color: #667eea;'>📊 Análise de vendas - Eidom</h1>
+    <h1 style='text-align: center; color: #667eea;'>📊 Análise de vendas - Eindom</h1>
     <hr>
     """, unsafe_allow_html=True)
 
