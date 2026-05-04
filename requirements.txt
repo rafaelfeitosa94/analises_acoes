@@ -5,4 +5,4 @@ plotly>=6.0.0
 Pillow
 requests
 openpyxl
-pyodbc
+pyodbc==5.0.1
