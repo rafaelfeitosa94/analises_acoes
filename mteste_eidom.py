@@ -55,7 +55,7 @@ def tela_login():
     st.markdown("""
     <div class="login-card">
         <h2>🔐 Acesso ao Dashboard</h2>
-        <p>Análise de vendas - Eidom</p>
+        <p>Análise de vendas - Eindom</p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -142,6 +142,7 @@ def carregar_dados():
             "PROMOTOR DE MARKETING": "promotor",
             "PONTO DE CAPTAÇÃO":     "ponto_captacao",
         }, inplace=True)
+        # GERENTE DE SALA e CLOSER já chegam com o nome original — sem rename necessário
 
         # ---------- Replica WHERE STATUS = 'Ativo' ----------
         df = raw[raw["STATUS"].str.strip() == "Ativo"].copy()
@@ -154,7 +155,7 @@ def carregar_dados():
         df["TOTAL_VISTA"] = pd.to_numeric(df["TOTAL_VISTA"], errors="coerce")
 
         # ---------- Garante colunas opcionais ----------
-        for col in ["promotor", "CLOSER", "ponto_captacao", "COTA", "DATA"]:
+        for col in ["promotor", "CLOSER", "GERENTE DE SALA", "ponto_captacao", "COTA", "DATA"]:
             if col not in df.columns:
                 df[col] = "Não informado"
 
@@ -217,12 +218,20 @@ def dashboard_principal():
     # --- Aviso fixo ---
     st.markdown("""
     <div class="notice-board">
-        <div class="notice-title"><span>📢</span><span>Ponto à ser ressaltado</span></div>
+        <div class="notice-title"><span>📢</span><span>Pontos à serem ressaltados</span></div>
         <div class="notice-item">
             <div class="notice-icon">📊</div>
             <div class="notice-text">
-                <span class="notice-highlight">A cidade com maior número de contratos fechados é Salvador e o estado é a Bahia,
-                com 14 das 15 cidades que mais venderam no ranking</span>
+                <span class="notice-highlight">A cidade com maior número de contratos fechados é Salvador e o estado é a Bahia</span>,
+                com 14 das 15 cidades que mais venderam no ranking
+            </div>
+        </div>
+        <div class="notice-item">
+            <div class="notice-icon">🏪</div>
+            <div class="notice-text">
+                Embora não tenha sido o que mais vendeu, o promotor
+                <span class="notice-highlight">Marcelo José foi o responsável pela maior venda</span>
+            </div>
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -353,6 +362,42 @@ def dashboard_principal():
                       color="Quantidade", color_continuous_scale="RdPu", text="Quantidade")
         fig6.update_traces(textposition="outside")
         st.plotly_chart(fig6, use_container_width=True)
+
+    # --- Gerente de Sala e Closer ---
+    st.subheader("🏆 Gerente de Sala & Closer")
+    col1, col2 = st.columns(2)
+
+    with col1:
+        if "GERENTE DE SALA" in df_filtrado.columns:
+            top_gerentes = (
+                df_filtrado.groupby("GERENTE DE SALA").size()
+                .sort_values(ascending=False).head(10).reset_index()
+            )
+            top_gerentes.columns = ["Gerente de Sala", "Quantidade"]
+            fig_ger = px.bar(
+                top_gerentes, x="Gerente de Sala", y="Quantidade",
+                title="Top 10 Gerentes de Sala por Contratos",
+                color="Quantidade", color_continuous_scale="Teal", text="Quantidade"
+            )
+            fig_ger.update_traces(textposition="outside")
+            fig_ger.update_layout(xaxis_tickangle=-45)
+            st.plotly_chart(fig_ger, use_container_width=True)
+
+    with col2:
+        if "CLOSER" in df_filtrado.columns:
+            top_closers = (
+                df_filtrado.groupby("CLOSER").size()
+                .sort_values(ascending=False).head(10).reset_index()
+            )
+            top_closers.columns = ["Closer", "Quantidade"]
+            fig_clo = px.bar(
+                top_closers, x="Closer", y="Quantidade",
+                title="Top 10 Closers por Contratos",
+                color="Quantidade", color_continuous_scale="Purples", text="Quantidade"
+            )
+            fig_clo.update_traces(textposition="outside")
+            fig_clo.update_layout(xaxis_tickangle=-45)
+            st.plotly_chart(fig_clo, use_container_width=True)
 
     # --- Promotores ---
     st.subheader("👥 Análise por Promotor")
