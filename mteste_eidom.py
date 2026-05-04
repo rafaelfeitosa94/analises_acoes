@@ -17,7 +17,7 @@ st.set_page_config(
 
 # ==================== CAMINHO DO ARQUIVO ====================
 # Altere o caminho abaixo conforme necessário
-EXCEL_PATH = r"C:\Users\rfeitosa\Desktop\dados_eidom.xlsx"
+EXCEL_PATH = "dados_eidom.xlsx"
 
 # ==================== SISTEMA DE LOGIN ====================
 USUARIOS = {
