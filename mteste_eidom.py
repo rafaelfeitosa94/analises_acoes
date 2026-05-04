@@ -222,15 +222,8 @@ def dashboard_principal():
         <div class="notice-item">
             <div class="notice-icon">📊</div>
             <div class="notice-text">
-                <span class="notice-highlight">A cidade com maior número de contratos fechados é Salvador e o estado é a Bahia</span>,
-                com 14 das 15 cidades que mais venderam no ranking
-            </div>
-        </div>
-        <div class="notice-item">
-            <div class="notice-icon">🏪</div>
-            <div class="notice-text">
-                Embora não tenha sido o que mais vendeu, o promotor
-                <span class="notice-highlight">Marcelo José foi o responsável pela maior venda</span>
+                <span class="notice-highlight">A cidade com maior número de contratos fechados é Salvador e o estado é a Bahia,
+                com 14 das 15 cidades que mais venderam no ranking</span>
             </div>
         </div>
     </div>
