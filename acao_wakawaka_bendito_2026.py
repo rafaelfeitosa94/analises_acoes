@@ -90,7 +90,7 @@ def login_screen():
     # Card de login
     with st.container():
         st.markdown('<div class="login-card">', unsafe_allow_html=True)
-        st.markdown('<div class="login-title">Combo Waka Waka Bendito</div>', unsafe_allow_html=True)
+        st.markdown('<div class="login-title">Combo Waka Waka Bendito 🍪</div>', unsafe_allow_html=True)
         st.markdown('<div class="login-subtitle">Acesso ao Dashboard</div>', unsafe_allow_html=True)
         
         # Formulário de login
