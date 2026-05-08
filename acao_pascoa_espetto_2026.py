@@ -353,6 +353,8 @@ data = {
 
 df = pd.DataFrame(data)
 
+# Criar um DataFrame apenas com lojas comparáveis (que têm dados de 2025)
+df_comparavel = df[df['FAT_2025'] > 0].copy()
 
 # Sidebar para filtros
 with st.sidebar:
@@ -380,13 +382,16 @@ df_filtrado = df[
     (df['FAT_2026'] <= fat_max)
 ]
 
-# Métricas principais
-st.markdown('<h2 class="sub-header">📊 Visão Geral</h2>', unsafe_allow_html=True)
+# DataFrame apenas com lojas comparáveis dentro do filtro
+df_filtrado_comparavel = df_filtrado[df_filtrado['FAT_2025'] > 0].copy()
+
+# Métricas principais - USANDO APENAS LOJAS COMPARÁVEIS
+st.markdown('<h2 class="sub-header">📊 Visão Geral (Lojas Comparáveis)</h2>', unsafe_allow_html=True)
 
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
-    fat_total_2025 = df_filtrado['FAT_2025'].sum()
+    fat_total_2025 = df_filtrado_comparavel['FAT_2025'].sum()
     st.markdown(f"""
     <div class="metric-card">
         <div class="metric-value">R$ {fat_total_2025:,.2f}</div>
@@ -395,7 +400,7 @@ with col1:
     """, unsafe_allow_html=True)
 
 with col2:
-    fat_total_2026 = df_filtrado['FAT_2026'].sum() if not df_filtrado['FAT_2026'].isna().all() else 0
+    fat_total_2026 = df_filtrado_comparavel['FAT_2026'].sum()
     variacao = ((fat_total_2026 - fat_total_2025) / fat_total_2025 * 100) if fat_total_2025 > 0 else 0
     st.markdown(f"""
     <div class="metric-card">
@@ -406,7 +411,7 @@ with col2:
     """, unsafe_allow_html=True)
 
 with col3:
-    clientes_total = df_filtrado['TC_2026'].sum()
+    clientes_total = df_filtrado_comparavel['TC_2026'].sum()
     st.markdown(f"""
     <div class="metric-card">
         <div class="metric-value">{clientes_total:,.0f}</div>
@@ -415,7 +420,7 @@ with col3:
     """, unsafe_allow_html=True)
 
 with col4:
-    tm_medio = df_filtrado['TM_2026'].mean()
+    tm_medio = df_filtrado_comparavel['TM_2026'].mean()
     st.markdown(f"""
     <div class="metric-card">
         <div class="metric-value">R$ {tm_medio:,.2f}</div>
@@ -460,8 +465,8 @@ with col2:
     st.markdown('<div class="section-card">', unsafe_allow_html=True)
     st.markdown('<h3 style="color: #FFA500;">📈 Comparativo 2025 vs 2026</h3>', unsafe_allow_html=True)
     
-    df_comp = df_filtrado[['LOJA', 'FAT_2026', 'FAT_2025']].copy()
-    df_comp = df_comp.dropna(subset=['FAT_2025'])
+    # Usar apenas lojas comparáveis para o gráfico de variação
+    df_comp = df_filtrado_comparavel[['LOJA', 'FAT_2026', 'FAT_2025']].copy()
     
     if not df_comp.empty:
         df_comp['VARIACAO_%'] = ((df_comp['FAT_2026'] - df_comp['FAT_2025']) / df_comp['FAT_2025']) * 100
@@ -510,28 +515,33 @@ with col2:
         )
         
         st.plotly_chart(fig_comp, use_container_width=True)
+    else:
+        st.info("Nenhuma loja com dados comparáveis (2025 e 2026) disponível.")
 
 st.markdown("---")
 
 # Tabela de detalhamento
-st.markdown("### 📊 Detalhamento por Loja")
+st.markdown("### 📊 Detalhamento por Loja (Apenas Lojas com dados 2025)")
 
 df_display = df_comp.copy()
-df_display['FAT_2025'] = df_display['FAT_2025'].apply(lambda x: f'R$ {x:,.2f}')
-df_display['FAT_2026'] = df_display['FAT_2026'].apply(lambda x: f'R$ {x:,.2f}')
-df_display['VARIACAO_%'] = df_display['VARIACAO_%'].apply(lambda x: f'{x:.1f}%')
-df_display.columns = ['Loja', 'Faturamento 2026', 'Faturamento 2025', 'Variação %']
-
-st.dataframe(
-    df_display,
-    use_container_width=True,
-    hide_index=True
-)
+if not df_display.empty:
+    df_display['FAT_2025'] = df_display['FAT_2025'].apply(lambda x: f'R$ {x:,.2f}')
+    df_display['FAT_2026'] = df_display['FAT_2026'].apply(lambda x: f'R$ {x:,.2f}')
+    df_display['VARIACAO_%'] = df_display['VARIACAO_%'].apply(lambda x: f'{x:.1f}%')
+    df_display.columns = ['Loja', 'Faturamento 2026', 'Faturamento 2025', 'Variação %']
+    
+    st.dataframe(
+        df_display,
+        use_container_width=True,
+        hide_index=True
+    )
+else:
+    st.info("Nenhuma loja com dados comparáveis disponível.")
 
 st.markdown("---")
 
-# RESUMO COM CARDS
-st.markdown("### 📈 Resumo de Performance")
+# RESUMO COM CARDS - USANDO APENAS LOJAS COMPARÁVEIS
+st.markdown("### 📈 Resumo de Performance (Lojas Comparáveis)")
 
 if not df_comp.empty:
     media_variacao = df_comp['VARIACAO_%'].mean()
@@ -677,9 +687,9 @@ st.markdown('<h2 class="sub-header">📊 Dados Completos</h2>', unsafe_allow_htm
 
 df_display_full = df_filtrado.copy()
 df_display_full['FAT_2026'] = df_display_full['FAT_2026'].apply(lambda x: f'R$ {x:,.2f}')
-df_display_full['FAT_2025'] = df_display_full['FAT_2025'].apply(lambda x: f'R$ {x:,.2f}' if pd.notna(x) else 'N/A')
+df_display_full['FAT_2025'] = df_display_full['FAT_2025'].apply(lambda x: f'R$ {x:,.2f}' if pd.notna(x) and x > 0 else 'N/A')
 df_display_full['TM_2026'] = df_display_full['TM_2026'].apply(lambda x: f'R$ {x:,.2f}')
-df_display_full['TM_2025'] = df_display_full['TM_2025'].apply(lambda x: f'R$ {x:,.2f}' if pd.notna(x) else 'N/A')
+df_display_full['TM_2025'] = df_display_full['TM_2025'].apply(lambda x: f'R$ {x:,.2f}' if pd.notna(x) and x > 0 else 'N/A')
 df_display_full['VALOR_VENDA_PROD'] = df_display_full['VALOR_VENDA_PROD'].apply(lambda x: f'R$ {x:,.2f}')
 df_display_full['PART.(%)'] = df_display_full['PART.(%)'].apply(lambda x: f'{x*100:.4f}%')
 
