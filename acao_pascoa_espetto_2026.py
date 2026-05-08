@@ -409,7 +409,7 @@ with col3:
     clientes_total = df_filtrado['TC_2026'].sum()
     st.markdown(f"""
     <div class="metric-card">
-        <div class="metric-value">{clientes_total:,.f}</div>
+        <div class="metric-value">{clientes_total:,.0f}</div>
         <div class="metric-label">Total de Clientes 2026</div>
     </div>
     """, unsafe_allow_html=True)
