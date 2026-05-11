@@ -130,13 +130,6 @@ header[data-testid="stHeader"]{
     font-weight:bold;
 }
 
-/* BOXES */
-.section-card{
-    background:white;
-    padding:25px;
-    border-radius:20px;
-    box-shadow:0px 4px 15px rgba(0,0,0,0.06);
-}
 
 /* TITULOS */
 .sub-title{
