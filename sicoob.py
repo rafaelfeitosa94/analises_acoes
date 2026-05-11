@@ -44,16 +44,6 @@ def fazer_login():
     with col2:
 
         st.markdown("""
-        <div style="
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0px 4px 25px rgba(0,0,0,0.1);
-            margin-top: 80px;
-        ">
-        """, unsafe_allow_html=True)
-
-        st.markdown("""
         <h1 style='text-align:center;color:#00A859;font-size:38px;'>
         SICOOB
         </h1>
