@@ -31,6 +31,13 @@ if "logado" not in st.session_state:
 
 def fazer_login():
     
+    st.markdown("""
+    <style>
+    .block-container{
+        padding-top:1rem;
+    }
+    </style>
+    """, unsafe_allow_html=True)
 
     col1, col2, col3 = st.columns([1,1,1])
 
