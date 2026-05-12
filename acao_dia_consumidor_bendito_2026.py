@@ -401,7 +401,7 @@ def main_dashboard():
     # Subtítulo
     st.markdown("""
     <div style="display: flex; justify-content: center; width: 100%; margin-top: 0.5rem;">
-        <p style="background: linear-gradient(135deg, #5a8a1e 0%, #96c734 100%); color: white; font-weight: bold; font-size: 1.2rem; padding: 0.8rem 2rem; border-radius: 50px; box-shadow: 0 4px 10px rgba(150,199,52,0.3); margin: 0; display: inline-block; text-align: center;">De 15/03 à 20/03</p>
+        <p style="background: linear-gradient(135deg, #5a8a1e 0%, #96c734 100%); color: white; font-weight: bold; font-size: 1.2rem; padding: 0.8rem 2rem; border-radius: 50px; box-shadow: 0 4px 10px rgba(150,199,52,0.3); margin: 0; display: inline-block; text-align: center;"> 13 à 20/03/2026 VS 14 à 21/03/2025 </p>
     </div>
     """, unsafe_allow_html=True)
     
