@@ -783,9 +783,6 @@ st.markdown("""
         <span>📢</span> AVISOS IMPORTANTES
     </div>
     <ul class="avisos-list">
-        <li>Por conta do sistema ainda ser o ultrapassado Xmenu, a forma de contabilizar o uso da dose dupla, foi feita com base no preço de venda dos itens.</li>
-        <li>O valor total considera todas as vendas do produto no período, seja dose dupla ou não.</li>
-        <li><span class="destaque-olegario">Olegário foi a única loja que vendeu a dose dupla da caipirinha de limão em dose dupla.</span></li>
         <li><span class="destaque-olegario">* As lojas sem faturamento em 2025 ou 2026 não são consideradas nos cálculos de variação e comparativos.</span></li>
     </ul>
 </div>
