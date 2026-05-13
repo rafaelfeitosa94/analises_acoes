@@ -401,7 +401,7 @@ def main_dashboard():
     # Subtítulo
     st.markdown("""
     <div style="display: flex; justify-content: center; width: 100%; margin-top: 0.5rem;">
-        <p style="background: linear-gradient(135deg, #5a8a1e 0%, #96c734 100%); color: white; font-weight: bold; font-size: 1.2rem; padding: 0.8rem 2rem; border-radius: 50px; box-shadow: 0 4px 10px rgba(150,199,52,0.3); margin: 0; display: inline-block; text-align: center;">De 08 à 10/05/2026 x 09 à 11/05/2025</p>
+        <p style="background: linear-gradient(135deg, #5a8a1e 0%, #96c734 100%); color: white; font-weight: bold; font-size: 1.2rem; padding: 0.8rem 2rem; border-radius: 50px; box-shadow: 0 4px 10px rgba(150,199,52,0.3); margin: 0; display: inline-block; text-align: center;">(De 02 à 10/05/2026 X De 03 à 11/05/2025)</p>
     </div>
     """, unsafe_allow_html=True)
     
@@ -411,17 +411,21 @@ def main_dashboard():
     data = {
         'MARCA': ['BENDITO'] * 4,
         'LOJA': ['BEN DOWNTOWN', 'BEN LEBLON', 'BEN BARÃO', 'BEN BARRA SHOPPING'],
-        'FAT_2026': [3562.37, 4421.25, 11144.56, 15719.77],
-        'TC_2026': [58, 93, 249, 408],
+        'FAT_2026': [18435.47, 29499.56, 42822.98, 52727.98],
+        'TC_2026': [377, 770, 1053, 1437],
         'TM_2026': [61.42, 47.54, 44.76, 38.53],
-        'FAT_2025': [5184.95, 6609.33, 9949.05, 14568.78],
-        'TC_2025': [71, 115, 237, 346],
-        'TM_2025': [73.02746478873239, 57.472434782608694, 41.97911392405063, 42.106300578034684],
-        'PROD_PROMOCIONADO': ['AÇÃO DIA DAS MÃES'] * 4,
-        'COMPOSICAO_PROD': ['KIT CESTA M'] * 4,
-        'QUANTIDADE': [3, 1, 0, 0],
-        'VALOR_VENDA_PROD': [371.69, 279.89, 0.0, 0.0],
-        'PART.(%)': [0.10433784250372645, 0.06330562623692394, 0.0, 0.0]
+        'FAT_2025': [21334.36, 36289.35, 37303.84, 46004.38],
+        'TC_2025': [429, 871, 996, 1294],
+        'TM_2025': [49.730442890442895, 41.66400688863375, 37.45365461847389, 35.55207109737248],
+        'TORTA_PQ': [6, 9, 6, 2],
+        'TORTA_GR': [1, 2, 0, 1],
+        'KIT_CESTA_M': [3, 1, 0, 0],
+        'PROD_PROMOCIONADO': ['KIT CESTA'] * 4,
+        'QUANTIDADE_BOTAO': [3, 1, 0, 0],
+        'COMPOSICAO_PROD': ['KIT CESTA'] * 4,
+        'QUANTIDADE': [10, 12, 6, 3],
+        'VALOR_VENDA_PROD': [1283.97, 1754.77, 678.4, 430.7],
+        'PART.(%)': [0.06964671906927243, 0.05948461604173079, 0.015841961488901518, 0.008168338707456648]
     }
     
     df = pd.DataFrame(data)
@@ -745,7 +749,7 @@ def main_dashboard():
     st.markdown("---")
     
     # Análise do produto promocional
-    st.markdown('<h2 class="sub-header">🍺 Análise do Produto Promocionado</h2>', unsafe_allow_html=True)
+    st.markdown('<h2 class="sub-header">🍪 Análise do Produto Promocionado</h2>', unsafe_allow_html=True)
     
     col1, col2 = st.columns(2)
     
