@@ -52,7 +52,6 @@ def base_layout(height=400):
 
 st.markdown(f"""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@400;500;600&display=swap');
 
 html, body, [class*="css"] {{
     background-color: {BG} !important;
@@ -92,7 +91,7 @@ p, span, label, div {{ color: {TEXT} !important; }}
 }}
 .metric-icon {{ font-size: 1.6rem; margin-bottom: .6rem; display: block; }}
 .metric-value {{
-    font-family: 'Syne', sans-serif;
+    font-family: Helvetica, Arial, sans-serif;    
     font-size: 1.85rem;
     font-weight: 800;
     color: {TEXT} !important;
@@ -127,14 +126,14 @@ p, span, label, div {{ color: {TEXT} !important; }}
     margin-bottom: 1.5rem;
 }}
 .section-title {{
-    font-family: 'Syne', sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
     font-size: 1.05rem;
     font-weight: 700;
     color: {TEXT} !important;
     margin-bottom: 1rem;
 }}
 .sub-header {{
-    font-family: 'Syne', sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
     font-size: 1.3rem;
     font-weight: 800;
     color: {PRIMARY} !important;
