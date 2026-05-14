@@ -636,7 +636,7 @@ if not df_comp.empty:
         fat_2025_total = df_comp['FAT_2025'].sum()
         st.markdown(f"""
         <div class="summary-card">
-            <div class="summary-value" style="font-size: 1.5rem;">R$ {fat_2025_total/1000000:.1f}M</div>
+            <div class="summary-value" style="font-size: 1.5rem;">R$ {fat_2025_total/1000000:.3f}M</div>
             <div class="summary-label">💰 Faturamento 2025</div>
         </div>
         """, unsafe_allow_html=True)
@@ -646,7 +646,7 @@ if not df_comp.empty:
         variacao_total = ((fat_2026_total - fat_2025_total) / fat_2025_total * 100) if fat_2025_total > 0 else 0
         st.markdown(f"""
         <div class="summary-card">
-            <div class="summary-value" style="font-size: 1.5rem;">R$ {fat_2026_total/1000000:.1f}M</div>
+            <div class="summary-value" style="font-size: 1.5rem;">R$ {fat_2026_total/1000000:.3f}M</div>
             <div class="summary-label">💰 Faturamento 2026</div>
             <div class="summary-sub">{variacao_total:+.1f}% vs 2025</div>
         </div>
