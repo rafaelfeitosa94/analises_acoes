@@ -467,7 +467,7 @@ data = {
     'VALOR_VENDA_PROD': [5073, 2907, 3363, 0, 2356, 3344, 3097, 2907],
     'PART.(%)': [
         0.03452322426907128, 0.03099881112574737, 0.0363777575378651, 0.0,
-        0.03614778867093727, 0.06095009189456946, 0.58667346739705976, 0.84831610255959897
+        0.03614778867093727, 0.06095009189456946, 0.05866734673970597, 0.08483161025595989
     ]
 }
 
@@ -1181,7 +1181,7 @@ st.markdown("""
         </div>
         <div class="info-text">
             <ul class="info-list">
-                <li>A venda foi mais expressiva nas lojas Botafogo e Moema, representando respectivamente 19,7% e 13,8% dos faturamentos durante o periodo.</li>           
+                <li>A venda foi mais expressiva nas lojas Barra Sul e Moema, representando respectivamente 6,0% e 8,4% dos faturamentos durante o periodo.</li>           
                 <li>O valor total considera todas as vendas do balde.</li>
                 <li><strong style="color: #89CFF0;">Freguesia foi loja que mais vendeu o balde, com 89 unidades vendidas.</strong></li>
                 <li><strong style="color: #89CFF0;">* A loja Engenhão não participou da ação porque não trabalha com garrafas 600ml.</strong></li>
