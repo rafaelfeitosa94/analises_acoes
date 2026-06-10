@@ -1171,7 +1171,7 @@ with col2:
     st.markdown('<div class="section-card">', unsafe_allow_html=True)
     st.markdown(f'<div class="section-title">📊 Participação no Faturamento</div>', unsafe_allow_html=True)
     
-    df_part = df_comparavel.nlargest(21, 'PART.(%)')[['LOJA', 'PART.(%)', 'VALOR_VENDA_PROD']].copy() if not df_comparavel.empty else pd.DataFrame()
+    df_part = df_comparavel.nlargest(19, 'PART.(%)')[['LOJA', 'PART.(%)', 'VALOR_VENDA_PROD']].copy() if not df_comparavel.empty else pd.DataFrame()
     if not df_part.empty and df_part['PART.(%)'].sum() > 0:
         df_part['PART.(%)'] = df_part['PART.(%)'] * 100
         
