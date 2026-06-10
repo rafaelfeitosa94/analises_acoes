@@ -1190,7 +1190,7 @@ with col2:
             paper_bgcolor='rgba(0,0,0,0)',
             font=dict(color=TEXT, family="Barlow, sans-serif"),
             xaxis={'tickangle': 45, 'tickfont': dict(color=TEXT, size=10)},
-            yaxis={'tickfont': dict(color=MUTED, size=10), 'gridcolor': GRID},
+            yaxis={'tickfont': dict(color=MUTED, size=21), 'gridcolor': GRID},
             coloraxis_showscale=False
         )
         st.plotly_chart(fig_part, use_container_width=True, config={"displayModeBar": False})
