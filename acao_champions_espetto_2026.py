@@ -1171,7 +1171,7 @@ with col2:
     st.markdown('<div class="section-card">', unsafe_allow_html=True)
     st.markdown(f'<div class="section-title">📊 Participação no Faturamento</div>', unsafe_allow_html=True)
     
-    df_part = df_comparavel.nlargest(10, 'PART.(%)')[['LOJA', 'PART.(%)', 'VALOR_VENDA_PROD']].copy() if not df_comparavel.empty else pd.DataFrame()
+    df_part = df_comparavel.nlargest(21, 'PART.(%)')[['LOJA', 'PART.(%)', 'VALOR_VENDA_PROD']].copy() if not df_comparavel.empty else pd.DataFrame()
     if not df_part.empty and df_part['PART.(%)'].sum() > 0:
         df_part['PART.(%)'] = df_part['PART.(%)'] * 100
         
@@ -1190,7 +1190,7 @@ with col2:
             paper_bgcolor='rgba(0,0,0,0)',
             font=dict(color=TEXT, family="Barlow, sans-serif"),
             xaxis={'tickangle': 45, 'tickfont': dict(color=TEXT, size=10)},
-            yaxis={'tickfont': dict(color=MUTED, size=21), 'gridcolor': GRID},
+            yaxis={'tickfont': dict(color=MUTED, size=10), 'gridcolor': GRID},
             coloraxis_showscale=False
         )
         st.plotly_chart(fig_part, use_container_width=True, config={"displayModeBar": False})
